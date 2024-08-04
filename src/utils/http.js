@@ -10,10 +10,10 @@ class Http {
 		if(process.env.NODE_ENV == 'production'){
 			this.server_host = window.location.origin;
 		}else{
-			this.server_host = "http://127.0.0.1:5000"
+			this.server_host = ""
 		}
 		this.http = axios.create({
-			baseURL: this.server_host + "/cmsapi",
+			baseURL: this.server_host + "/api",
 			timeout: 1000*60
 		});
 
@@ -36,20 +36,19 @@ class Http {
 		return this.http.post(url, qs.stringify(data));
 	}
 
-	addBanner(data){
-		const url = "/banner/add"
-		return this._post(url, data);
-	}
+	// addUser(data){
 
-	getBannerList(){
-		const url = "/banner/list"
+	// }
+
+	getUserList(){
+		const url = "/get_user_list"
 		return this.http.get(url);
 	}
 
-	getUserList(page){
-		const url = "/user/list?page=" + (page?page:1)
-		return this.http.get(url)
-	}
+	// getUserList(page){
+	// 	const url = "/user/list?page=" + (page?page:1)
+	// 	return this.http.get(url)
+	// }
 }
 
 export default new Http()

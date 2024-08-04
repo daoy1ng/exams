@@ -1,4 +1,5 @@
 <script setup>
+import http from './utils/http'
 import Modal from "./components/modal.vue";
 import { onMounted, onUnmounted, watch, reactive, ref, computed } from "vue";
 
@@ -6,6 +7,10 @@ let list = ref([]);
 // let currentList = ref([]);
 let currentUser = ref({}); //当前编辑的user
 let showModal = ref(false);
+
+onMounted(() => {
+  http.getUserList()
+})
 
 const showAdd = () => {
   currentUser.value = {}
